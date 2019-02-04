@@ -1,0 +1,65 @@
+header {
+    text-align: center;
+}
+section {
+    display: flex;
+}
+article {
+    text-align: left;
+}
+picture {
+    flex: 1;
+}
+nav a:hover{
+    border-bottom: 2px purple solid;
+    font-size: 2em;
+    transition: .9s;
+}
+nav a {
+    padding: 15px;
+    padding-bottom: 4px;
+    font-size: 1.8em;
+    text-decoration: none;
+}
+main {
+    text-align: center;
+}
+p {
+    text-indent: 10%;
+}
+#mainPage {
+    background-color: orange;
+}
+.bulletPoints {
+    text-indent: 5%;
+}
+footer {
+    text-align: center;
+}
+#abstractionPage {
+    background-color: yellow;
+}
+#encapsulationPage {
+    background-color: grey;
+}
+#inheritancePage {
+    background-color: green;
+}
+#polymorphismPage {
+    background-color: beige;
+}
+#currentPage {
+    text-decoration: underline;
+}
+p {
+    line-height: 1.8;
+}
+article {
+    width: 600px;
+}
+nav {
+    text-align: center;
+}
+nav a {
+    color: purple;
+}

@@ -1,0 +1,68 @@
+/*index.html*/
+h1 {
+    color: #0AF55C;
+    font-family: 'Pacifico', cursive;
+    font-size: 4em;
+    margin-bottom: 0px;
+}
+body {
+    background-color:black;
+    color:gray;
+}
+header, main, nav, footer {
+    text-align: center;
+}
+nav a {
+    padding: 15px;
+    padding-bottom: 4px;
+    font-size: 1.8em;
+    text-decoration: none;
+    color: white;
+}
+nav a:hover{
+    border-bottom: 2px orange solid;
+    font-size: 2em;
+    transition: .9s;
+}
+#me, #welcomeText {
+    float: left;
+}
+footer {
+    clear: left;
+    font-size: 10px;
+    color: white;
+}
+div {
+    text-align: left;
+}
+#homeLink {
+    color: yellow;
+}
+/*about.html*/
+table {
+    margin: 0px auto;
+}
+td {
+    padding-right: 10px;
+    font-size: 1.3em;
+}
+td strong {
+    color: orange;
+}
+#table-header {
+    background-color: #351a00;
+}
+.table-row {
+    background-color: #753900;
+    color: white;
+}
+ul {
+    text-align: left;
+    padding-left: 200px;
+}
+.hobby {
+    color: magenta;
+}
+#googleSheets {
+    text-align: center;
+}

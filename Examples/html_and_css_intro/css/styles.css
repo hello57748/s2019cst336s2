@@ -1,0 +1,10 @@
+/*.right {*/
+/*    float: left;*/
+/*}*/
+
+/*.right {*/
+/*    float: right;*/
+/*}*/
+main, header, image, section, search, article, supportTicketButton, faqs, footer {
+    display: inline;
+}
