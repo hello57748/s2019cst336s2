@@ -23,6 +23,7 @@ nav a {
 }
 main {
     text-align: center;
+    display: flex;
 }
 p {
     text-indent: 10%;
@@ -62,4 +63,7 @@ nav {
 }
 nav a {
     color: purple;
+}
+hr {
+    width: 75%;
 }

@@ -8,3 +8,10 @@
 main, header, image, section, search, article, supportTicketButton, faqs, footer {
     display: inline;
 }
+header img {
+    height: 30px;
+}
+footer {
+    display: block;
+    text-align: center;
+}
