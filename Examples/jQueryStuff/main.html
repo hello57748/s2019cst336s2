@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> </title>
+    </head>
+    
+    <body>
+    
+        <h2>Weekdays:</h2>
+        <h3 class="smallFont">Monday</h3>
+        <h3 class="smallFont">Tuesday</h3>
+        <h2 id="weekday">Weekend:</h2>
+        <h3>Saturday</h3>
+        <h3>Sunday</h3>
+        <img src="img1.jpg"></img>
+        
+        <div id="box" style="width:100px; height:100px; background:red; position:absolute;">hello</div>
+
+        
+        <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            $("document").ready( function() {
+	            //jQuery code will go here
+	            console.log("Document is ready!");
+	            // $("h2").css("color", "red");
+	            // $("h3:first").html("Today is Monday");
+	            $("#weekday").css("color", "red");
+	            $(".smallFont").css("color", "red");
+	           
+	            $("img").click( function() {
+	               $(this).css("border", "solid 2px");
+	            });
+	           
+	            $("#box").click ( function() { 
+                    $("#box").animate({ left:'250px' });
+                });
+
+            });
+
+        </script>
+    </body>
+</html>
