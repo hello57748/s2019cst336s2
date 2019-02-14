@@ -1,0 +1,32 @@
+.inputGroup {
+    display: block;
+}
+h1 {
+    color: Magenta;
+}
+.images {
+    visibility: hidden;
+}
+.submit {
+    margin-top: 15px;
+}
+#results {
+    margin-top: 15px;
+}
+body {
+    display: inline-block;
+    margin-left: 500px
+}
+.inputGroup {
+    color: blue;
+}
+#headerOfPage {
+    border: 20px solid #73AD21;
+    border-radius: 50px;
+}
+#submissionButton {
+    color: orange;
+}
+#resetButton {
+    color: red;
+}
