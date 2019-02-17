@@ -1,0 +1,63 @@
+.inputGroup {
+    display: block;
+    margin-left: 38%;
+}
+h1 {
+    color: orange;
+    border: 50px solid red;
+    border-left-width: 120%;
+    border-right-width: 120%;
+    text-align: center;
+    float: center;
+}
+.images {
+    visibility: hidden;
+}
+.submit {
+    margin-top: 15px;
+}
+#results {
+    margin-top: 15px;
+    color: green;
+}
+#submissionButton {
+    color: orange;
+    margin-left: 38%;
+    background-color: grey;
+}
+#resetButton {
+    color: yellow;
+    background-color: grey;
+}
+#results {
+    margin-left: 38%;
+}
+#q1_box {
+    color: yellow;
+}
+#q2_box {
+    color: green;
+}
+#q3_box {
+    color: blue;
+}
+#q4_box {
+    color: indigo;
+}
+#q5_box {
+    color: violet;
+}
+#q6_box {
+    color: red;
+}
+body {
+    background-color: black;
+}
+#q1_options {
+    float: left;
+    margin-right: 20px;
+}
+#q3_options {
+    float: left;
+    margin-right: 20px;
+}

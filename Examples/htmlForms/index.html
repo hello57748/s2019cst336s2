@@ -1,0 +1,111 @@
+
+        <!--<form>-->
+        <!--    <label for="fullName">Name</label>-->
+        <!--    <input type="text" id="fullName" name="fullName" size="25" />-->
+        <!--    <div class="input-group">-->
+        <!--        <label for="feedback">Feedback</label>-->
+        <!--        <br />-->
+        <!--        <textarea id="feedback" cols="30" rows="3"></textarea>-->
+        <!--    </div>-->
+        <!--    <div class="input-group">-->
+        <!--        <label for="state">State</label>-->
+        <!--        <br />-->
+        <!--        <select id="state">-->
+        <!--        <option value="AZ">Arizona</option>-->
+        <!--        <option value="CA">California</option>-->
+        <!--        <option value="IL">Illinois</option>-->
+        <!--    </select>-->
+        <!--    </div>-->
+        <!--    <div class="input-group">-->
+        <!--        <label for="feedback">Highest Degree Obtained</label>-->
+        <!--        <br />-->
+        <!--        <input type="radio" id="item1" name="degreeChoices" value="High School">-->
+        <!--        <label for="item1">High School Diploma</label>-->
+        <!--        <br />-->
+        <!--        <input type="radio" id="item2" name="degreeChoices" value="College">-->
+        <!--        <label for="item2">College</label>-->
+        <!--    </div>-->
+        <!--    <div class="input-group">-->
+        <!--        Sports I like:-->
+        <!--        <br />-->
+        <!--        <input type="checkbox" id="basket" name="sports" value="basket">-->
+        <!--        <label for="basket"> Basketball </label>-->
+        <!--        <br />-->
+        <!--        <input type="checkbox" id="soccer" name="sports" value="basket">-->
+        <!--        <label for="soccer"> Soccer </label>-->
+        <!--    </div>-->
+        <!--    <div class="input-group">-->
+        <!--        <input type="button" value="Save" onclick="displayData()" />-->
+        <!--    </div>-->
+        <!--</form>-->
+
+        <!--CHALLENGE-->
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Baby Guesser</title>
+    </head>
+    
+    <body>
+        <form>
+            <div class="input-group">
+                <label for="feedback">Highest Degree Obtained</label>
+    
+                <div>
+                    <input type="radio" id="name1" name="nameChoice" value="1">
+                    <label for="name1">Tina</label>
+                </div>
+                <div>
+                    <input type="radio" id="name2" name="nameChoice" value="2">
+                    <label for="name2">Aidan</label>
+                </div>
+                <div>
+                    <input type="radio" id="name3" name="nameChoice" value="3">
+                    <label for="name3">Alexis</label>
+                </div>
+                <div>
+                    <input type="radio" id="name4" name="nameChoice" value="4">
+                    <label for="name4">Tristan</label>
+                </div>
+                <div>
+                    <input type="radio" id="name5" name="nameChoice" value="5">
+                    <label for="name5">Tanner</label>
+                </div>
+                <div>
+                    <input type="radio" id="name6" name="nameChoice" value="6">
+                    <label for="name6">Birgit</label>
+                </div>
+                <div>
+                    <button class="checker" type="button">Check Name</button>
+                </div>
+            </div>
+        </form>
+        
+        <!--Whether or not correct goes here-->
+        <div id="results"></div>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            var correctAnswer = "2";
+            
+            $("button.checker").on("click", function(e) {
+                // Don't need e.preventDefault() because we have <button type="button">
+                var selectedRadio = $("input[name='nameChoice']:checked");
+                var selectedNameValue = selectedRadio.val();
+                var selectedRadioId = selectedRadio.attr("id");
+                var selectedLabelHtml = $("label[for='" + selectedRadioId + "']").html(); 
+                
+                if (selectedNameValue === correctAnswer) {
+                    $("#results").html(selectedLabelHtml + " is correct").css("color", "green");
+                } else {
+                    $("#results").html(selectedLabelHtml + " is NOT correct").css("color", "red");
+                }
+                
+                console.log("selected name value", selectedNameValue);
+            });
+            
+        </script>
+    </body>
+
+</html>

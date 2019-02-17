@@ -1,4 +1,4 @@
-function printContact(contact) {
+function printContact(index, contact) {
     var contactList = document.getElementById("contact-list");
 
     //<li class="list-group-item">
@@ -43,6 +43,9 @@ function printContact(contact) {
     //            <label class="name lead">Mike Anamendolla</label>
     var nameLabel = document.createElement("label");
     nameLabel.setAttribute("class", "name lead");
+    
+    // nameLabel.setAttribute("data-index", index);
+
     nameLabel.innerHTML = contact.name;
     infoColumnDiv.appendChild(nameLabel);
 
