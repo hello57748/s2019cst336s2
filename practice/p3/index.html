@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title> </title>
+        <style type="text/css">
+            #header {
+                background-color: #E0E6F8;
+                text-align: center;
+                margin-left: -8px;
+                margin-right: -8px;
+                margin-top: -10px;
+                padding-bottom: 100px;
+                padding-top: 20px;
+            }
+            #play_button {
+                background-color: #04B404;
+                color: white;
+                margin: 0 auto;
+                margin-top: 25px;
+                padding: 10px;
+            }
+            body button {
+                display: block;
+                margin: 0 auto;
+            }
+            #total_winnings, #current_winnings{
+                text-align: center;
+            }
+            #status {
+                display: flex;
+                align-items:center;
+                justify-content: center;
+            }
+            
+
+
+        </style>
+    </head>
+    
+    <body>
+        
+        <header id="header">
+            <h1>Slot Machine</h1>
+        </header>
+        
+        <div id="main_content">
+            
+            <button id="play_button">Play!</button>
+            
+            <!--java script will insert pics-->
+            <div id="slot_pictures"></div>
+            
+            <div>
+                
+                <div id="status">
+                    <div id="img1"></div>
+                    <div id="img2"></div>
+                    <div id="img3"></div>
+                </div>
+                <h2 id= "current_winnings"></h2>
+                <h3 id="total_winnings">Total Winnings $0</h3>
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            $("document").ready( function() {
+                
+                var totalWinnings = 0;
+                var sound = new Audio("audio/jackpot.m4a");
+                
+                //when play button is clicked
+                $("#play_button").click(function() {
+                    
+                    var imageArray = ["cherry", "grapes","seven"];
+                    var randomIndex1 = Math.floor(Math.random() * 3);
+                    var randomImage1 = imageArray[randomIndex1] + ".png";
+                    
+                    var randomIndex2 = Math.floor(Math.random() * 3);
+                    var randomImage2 = imageArray[randomIndex2] + ".png";
+                    
+                    var randomIndex3 = Math.floor(Math.random() * 3);
+                    var randomImage3 = imageArray[randomIndex3] + ".png";
+                    
+                    //display images
+                    $("#img1").html("<img src='img/" + randomImage1 + "' ></img>");
+                    console.log("<img src='img/" + randomImage1 + "' ></img>");
+                    $("#img2").html("<img src='img/" + randomImage2 + "' ></img>");
+                    $("#img3").html("<img src='img/" + randomImage3 + "' ></img>");
+                    
+                    
+                    //make 3 images vars
+                    if (randomImage1 === randomImage2 && randomImage2 === randomImage3) {
+                        
+                        document.getElementById("current_winnings").innerHTML = "";
+                        document.getElementById("total_winnings").innerHTML = "";
+                        
+                        //cherries
+                        if (randomIndex1 === 0) {
+                            document.getElementById("current_winnings").innerHTML = "You won $100";
+                            totalWinnings += 100;
+                        }
+                        else if(randomIndex1 === 1){
+                            document.getElementById("current_winnings").innerHTML = "You won $300";
+                            totalWinnings += 300;
+                        }
+                        else if(randomIndex1 === 2){
+                            document.getElementById("current_winnings").innerHTML = "J A C K P O T !!<br>You won $500";
+                            totalWinnings += 500;
+                            sound.play();
+                        }
+                        document.getElementById("total_winnings").innerHTML = ("Total Winnings $" + totalWinnings);
+                        
+                    } 
+                    //didn't win
+                    else {
+                        document.getElementById("current_winnings").innerHTML = "Try Again";
+                    }
+                    
+                });
+            });
+        </script>
+
+    </body>
+</html>
