@@ -1,0 +1,193 @@
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <style type="text/css">
+        table, th, td {
+          border: 1px solid black;
+        }
+        #noSelectedOption {
+            color: red;
+        }
+        #selections {
+            display: flex;
+        }
+        body{
+            margin-left: 500px;
+        }
+        #top{
+            background-color: #BDBDBD;
+            margin-left: -500px;
+            text-align: center;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <h1 id="top"> Spring Break Shopping  </h1>
+
+    <table>
+    <tr>
+        <th>Product</th>
+        <th>Unit <br> Price</th>
+        <th> Quantity </th>
+        <th>Total</th>
+    </tr>
+    <tr>
+        <td>Microfiber Beach Towel</td>
+        <td>$30</td>
+        <td><input id="towelsQuantity" type="text" size="5"></td>
+        <td><div id="towelsTotal"></div></td>
+    </tr>
+
+   <tr>
+        <td>Sunscreen 100SPF, 120ml</td>
+        <td>$10</td>
+        <td><input id="sunscreenQuantity" type="text" size="5"></td>
+        <td><div id="sunscreenPrice"></div></td>
+    </tr>    
+    
+    <tr>
+        <td>Ipanema Flip-flop Sandals </td>
+        <td>$20</td>
+        <td><input id="sandalQuantity" type="text" size="5"></td>
+        <td><div id="sandalsPrice"></div></td>
+    </tr>
+
+   <tr>
+        <td>Shipping</td>
+        <td></td>
+        <td></td>
+        <td id="shippingPrice"></td>
+    </tr>    
+        
+    <tr>
+        <td>Subtotal</td>
+        <td></td>
+        <td></td>
+        <td id="subtotal"></td>
+    </tr>             
+        
+    <tr>
+        <td>Tax (10%)</td>
+        <td></td>
+        <td></td>
+        <td id="tax"></td>
+    </tr>
+    
+    <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td id="total"></td>
+    </tr>
+       
+    </table>
+    
+    <h3>Shipping & Handling</h3>
+    <div id="selections">
+        <select id="shipping">
+            <option value="0">Select Shipping Option</option>
+            <option value="15">Next-day Delivery: $15.00</option>
+            <option value="10">Three-day Delivery: $10.00</option>
+            <option value="5">Regualar (5-8 days): $5.00</option>
+        </select>
+        <div id="noSelectedOption"></div>
+    </div>
+    <br><br>
+    <input name="terms" type="checkbox" id="acceptTerms"></input>
+    <label id="dog" for="terms">I accept the terms of this purchase.</label>
+    <br> 
+    
+    <button id= "confirmButton">"CONFIRM PURCHASE"</button>
+    
+    <div id= "output"></div>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        
+        $("#towelsQuantity").on("input", function() {
+            var quant = $("#towelsQuantity").val();
+            var price = quant * 30.00;
+            $("#towelsTotal").html("$" + price);
+            subtotal();
+            
+        });
+        $("#sunscreenQuantity").on("input", function() {
+            var quant = $("#sunscreenQuantity").val();
+            var price = quant * 10.00;
+            $("#sunscreenPrice").html("$" + price);
+            subtotal();
+            
+        });
+        $("#sandalQuantity").on("input", function() {
+            var quant = $("#sandalQuantity").val();
+            var price = quant * 20.00;
+            $("#sandalsPrice").html("$" + price);
+            subtotal();
+            
+        });
+        
+        function subtotal() {
+            var quant = $("#towelsQuantity").val();
+            var price = quant * 30.00;
+            quant = $("#sunscreenQuantity").val();
+            price += quant * 10.00;
+            quant = $("#sandalQuantity").val();
+            price += quant * 20.00;
+            
+            $("#subtotal").html("$" + price);
+            var  taxes = price * .10;
+            $("#tax").html("$" + taxes);
+            
+            var shipping = $("#shipping").val();
+            if (shipping === "15") {
+                price += 15.00;
+                $("#shippingPrice").html("$15");
+            }
+            else if (shipping === "10") {
+                price += 10.00;
+                $("#shippingPrice").html("$10");
+            }
+            else if (shipping === "5") {
+                price += 5.00;
+                $("#shippingPrice").html("$5");
+            }
+            else if(shipping  ==="0"){
+                $("#shippingPrice").html("$0");
+            }
+            
+            $("#total"). html("$" + (price + taxes));
+        }
+        
+        $("#shipping").on("change", function() {
+            subtotal();
+            $("#noSelectedOption").html("");
+        });
+        
+        $("#confirmButton").on("click", function() {
+            $("#noSelectedOption").html("");
+            var shipping = $("#shipping").val();
+            if(shipping === "0"){
+                $("#noSelectedOption").html("A shipping option must be selected");
+            }
+            if(!$("#acceptTerms").is(':checked')){
+                $("#dog").css("color", "red");
+            }
+            else{
+                $("#dog").css("color", "black");
+            }
+            
+            if(shipping != "0" && $("#acceptTerms").is(':checked')){
+                $("#output").html("<h1> THANK YOU FOR YOUR PURCHASE</h1>");
+            }
+        });
+        
+    </script>
+</body>
+</html>
