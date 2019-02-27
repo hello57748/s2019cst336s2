@@ -8,6 +8,5 @@ echo 'Hello world from Cloud9!';
 ?>
 
 <!--link to lab 4-->
-<a href="">Lab 4</a>
 </body>
 </html>
