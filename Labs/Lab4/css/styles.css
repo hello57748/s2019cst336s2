@@ -47,3 +47,9 @@ fieldset {
 #signUpButtonBox {
     color: orange;
 }
+#usernameBox, #usernameInputAndStatus {
+    display: flex;
+}
+#passwordInputAndStatus, #passwordAgainBox {
+    display: flex;
+}

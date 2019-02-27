@@ -8,16 +8,16 @@
 <body id="dummybodyid">
   <h1> Sign Up Form </h1>
 
-  <form>
+  <form id="mainForm">
     <fieldset>
       
       <legend>Fill this stuff out!</legend>
       
       <!--contact info-->
-      <div id="firstNameBox"><label>First Name:</label><input type="text"></div>
-      <div id="lastNameBox"><label>Last Name:</label><input type="text"></div>
-      <div id="emailBox"><label>Email:</label><input type="text"></div>
-      <div id="phoneBox"><label>Phone Number:</label><input type="text"></div>
+      <div id="firstNameBox"><label>First Name:</label><input id="firstNameInput" type="text"></div>
+      <div id="lastNameBox"><label>Last Name:</label><input id="lastNameInput" type="text"></div>
+      <div id="emailBox"><label>Email:</label><input id="emailInput" type="text"></div>
+      <div id="phoneBox"><label>Phone Number:</label><input id="phoneInput" type="text"></div>
       
       <!--address info-->
       <div id="zipCodeContainer">
@@ -38,17 +38,26 @@
       </div>
       
       <!--account info-->
-      <div id="usernameBox"><label>Desired Username:</label><input type="text"></div>
+      <div id="usernameBox">
+        <label>Desired Username:</label>
+        <div id="usernameInputAndStatus">
+          <input id="usernameInput" type="text">
+          <div id="usernameStatus"></div>
+        </div>
+      </div>
       <div id="passwordBox">
         <label>Password:</label>
         <input id="passwordInput" type="password">
       </div>
       <div id="passwordAgainBox">
         <label>Type Password Again:</label>
-        <input id="passwordInputAgain" type="password">
+        <div id="passwordInputAndStatus">
+          <input id="passwordInputAgain" type="password">
+          <div id="passwordStatus"></div>
+        </div>
       </div>
       <div id="signUpButtonBox">
-        <input id="submissionButton" type="submit" value="Sign up!">
+        <input id="submissionButton" type="button" value="Sign up!">
       </div>
     </fieldset>
   </form>
