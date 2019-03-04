@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Practice 5: Like/Dislike Video App</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <style>
+    #showLiked,#showDislike{
+      display:none;
+    }
+    #getCommentsButton {
+      margin-right: 200px;
+      
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <!--Embed here any YouTube video using the "iframe" tag -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/sB2T0sQBUdw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+  </div>
+  
+  <div>
+    
+    <button id="getCommentsButton" onclick=ajaxCall('comments') >
+      Get Comments
+    </button>
+    
+    <button id="like">
+    <img src="img/cancel_like.png" alt="Like button" width="35" onclick= "ajaxCall('like')" />
+    </button>
+    <button id="showLiked">
+      <img src="img/like.png" alt="Like button" width="35" onclick= "ajaxCall('cancel_like')" />
+    </button>
+    <span id="numOfLikes"></span>
+  
+    <button id="dislike">
+      <img src="img/cancel_dislike.png" alt="Like button" width="35" onclick= "ajaxCall('dislike')" />
+    </button>
+    <button id="showDislike">
+      <img src="img/dislike.png" alt="Like button" width="35" onclick= "ajaxCall('cancel_dislike')" />
+    </button>
+    <span id="numOfDislikes"></span>
+    
+    
+
+  </div>
+  
+  <div id="comments">
+    
+    
+  </div>
+</body>
+<script>
+
+  function ajaxCall(action) {
+    
+    if (action === "like") {
+      if ($("#showDislike").is(':visible')) {
+        ajaxCall('cancel_dislike');
+      }
+      
+      $("#like").css("display", "none");
+      $("#showLiked").css("display", "inline");
+      
+      // !$('#yourID').is(':visible')
+    }
+    else if (action === "cancel_like") {
+      $("#showLiked").css("display", "none");
+      $("#like").css("display", "inline");
+      
+    }
+    else if (action === "dislike") {
+      if ($("#showLiked").is(':visible')) {
+        ajaxCall('cancel_like');
+      }
+      
+      $("#dislike").css("display", "none");
+      $("#showDislike").css("display", "inline");
+    }
+    else if (action === "cancel_dislike") {
+      $("#showDislike").css("display", "none");
+      $("#dislike").css("display", "inline");
+    }
+    
+    //This AJAX call returns a number of "likes" and "dislikes"
+  //Enter a YouTube video id for "data".
+	$.ajax({
+            type: "get",
+            url:  "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php",
+            dataType: "json",
+            data: { 
+              "videoId": "sB2T0sQBUdw",
+              "action": action,
+              
+            },  //   <----AS THE VALUE, ENTER THE YOUTUBE VIDEO ID
+            
+            success: function(data,status) {
+                // $("div").html(data.likes);
+                $("#numOfLikes").html(data.likes);
+                $("#numOfDislikes").html(data.dislikes);
+                if (action === 'comments') {
+                  console.log(data);
+                  for (var i in data) {
+                    var str = "";
+                    if (i > 0) str += "<br>";
+                    str += data[i].author + " " + data[i].date;
+                    str += "<br>" + data[i].comment;
+                    $("#comments").html($("#comments").html() + str + "<br>");
+                  }
+                }
+    
+              },
+              complete: function(data,status) { 
+                  //alert(status);
+              }
+         });
+  }
+	
+    //This AJAX call returns a number of "likes" and "dislikes"
+  //Enter a YouTube video id for "data".
+	$.ajax({
+            type: "get",
+            url:  "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php",
+            dataType: "json",
+            data: { 
+              "videoId": "sB2T0sQBUdw",
+            },  //   <----AS THE VALUE, ENTER THE YOUTUBE VIDEO ID
+            
+            success: function(data,status) {
+                // $("div").html(data.likes);
+                $("#numOfLikes").html(data.likes);
+                $("#numOfDislikes").html(data.dislikes);
+    
+              },
+              complete: function(data,status) { 
+                  //alert(status);
+              }
+         });
+</script>
+</html>
