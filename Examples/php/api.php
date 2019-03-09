@@ -18,7 +18,7 @@
 
       // TODO: do stuff to get the $results which is an associative array
       $results = array();
-      array_push($results, "something");
+      array_push($results, data);
 
       // Sending back down as JSON
       echo json_encode($results);

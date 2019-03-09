@@ -1,0 +1,55 @@
+body {
+    background-color: grey;
+    font-weight: bold;
+}
+h1 {
+    color: red;
+    font-family: fantasy;
+    font-weight: bold;
+    font-size: 50px;
+}
+#zipCodeContainer {
+    display: flex;
+}
+#zipCodeStatus {
+    color: red;
+}
+legend {
+    color: orange;
+    font-size: 25px;
+    font-family: cursive;
+}
+fieldset {
+    border-color: orange;
+    border-width: 100px;
+}
+#firstNameBox, #longitudeBox {
+    color: yellow;
+}
+#lastNameBox, #stateBox {
+    color: green;
+}
+#emailBox, #countyBox {
+    color: blue;
+}
+#phoneBox, #usernameBox {
+    color: indigo;
+}
+#zipCodeContainer, #passwordBox {
+    color: violet;
+}
+#cityBox, #passwordAgainBox {
+    color: red;
+}
+#latitudeBox {
+    color: orange;
+}
+#signUpButtonBox {
+    color: orange;
+}
+#usernameBox, #usernameInputAndStatus {
+    display: flex;
+}
+#passwordInputAndStatus, #passwordAgainBox {
+    display: flex;
+}

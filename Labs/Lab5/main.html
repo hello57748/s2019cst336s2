@@ -1,0 +1,69 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>AJAX: Sign Up Page</title>
+  <link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="dummybodyid">
+  <h1> Sign Up Form </h1>
+
+  <form id="mainForm" method="POST" action="register.php">
+    <fieldset>
+      
+      <legend>Fill this stuff out!</legend>
+      
+      <!--contact info-->
+      <div id="firstNameBox"><label>First Name:</label><input name="firstName" id="firstNameInput" type="text"></div>
+      <div id="lastNameBox"><label>Last Name:</label><input name="lastName" id="lastNameInput" type="text"></div>
+      <div id="emailBox"><label>Email:</label><input name="email" id="emailInput" type="text"></div>
+      <div id="phoneBox"><label>Phone Number:</label><input name="phone" id="phoneInput" type="text"></div>
+      
+      <!--address info-->
+      <div id="zipCodeContainer">
+        <label>Zip Code:</label>
+        <input name="zipCode" id="zipCodeInput" type="text">
+        <div id="zipCodeStatus"></div>
+      </div>
+      <div id="cityBox"><label id="city">City:</label></div>
+      <div id="latitudeBox"><label id="latitude">Latitude:</label></div>
+      <div id="longitudeBox"><label id="longitude">Longitude:</label></div>
+      <div id="stateBox">
+        <label>State:</label>
+        <input name="state" id="stateInput" type="text">
+      </div>
+      <div id="countyBox">
+        <label>Select a County:</label>
+        <select id='countySelect'></select>
+      </div>
+      
+      <!--account info-->
+      <div id="usernameBox">
+        <label>Desired Username:</label>
+        <div id="usernameInputAndStatus">
+          <input name="username" id="usernameInput" type="text">
+          <div id="usernameStatus"></div>
+        </div>
+      </div>
+      <div id="passwordBox">
+        <label>Password:</label>
+        <input name="password[]" id="passwordInput" type="password">
+      </div>
+      <div id="passwordAgainBox">
+        <label>Type Password Again:</label>
+        <div id="passwordInputAndStatus">
+          <input name="password[]" id="passwordInputAgain" type="password">
+          <div id="passwordStatus"></div>
+        </div>
+      </div>
+      <div id="signUpButtonBox">
+        <input id="submissionButton" type="button" value="Sign up!">
+      </div>
+    </fieldset>
+  </form>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/functions.js"></script>
+</body>
+
+</html>
