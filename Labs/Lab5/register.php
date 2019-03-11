@@ -6,7 +6,7 @@
     
     //start session
     session_start();
-    
+        
     // Used to display an error message below the form
     $errorMessage = '';
     $username = '';

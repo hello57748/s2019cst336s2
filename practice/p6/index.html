@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Discount Shopping</title>
+        <style type="text/css">
+            table, th, td {
+              border: 1px solid black;
+            }
+            #noSelectedOption {
+                color: red;
+            }
+            #selections {
+                display: flex;
+            }
+            body{
+                margin-left: 500px;
+            }
+            #top{
+                background-color: #BDBDBD;
+                margin-left: -500px;
+                text-align: center;
+                padding-top: 25px;
+                padding-bottom: 25px;
+                
+            }
+            #productTable {
+                margin-bottom: 30px;
+            }
+            
+        </style>
+    </head>
+    
+    <body>
+        
+        <!--table for order info-->
+        <table id="productTable">
+            <tr>
+                <th>Product</th>
+                <th>Unit <br> Price</th>
+                <th> Quantity </th>
+                <th>Total</th>
+            </tr>
+            <tr id="randProduct">
+                <td id="randProductName">Flip-flop Sandals</td>
+                <td id="randProductPrice">$30</td>
+                <td>
+                    <input id="randProductQuantity" type="text">
+                </td>
+                <td>
+                    <div id="randProductTotal"></div>
+                </td>
+            </tr>
+           <tr>
+                <td>Discount</td>
+                <td></td>
+                <td id = "discount"></td>
+                <td id="discountTotal"></td>
+            </tr>    
+            <tr>
+                <td>Subtotal</td>
+                <td></td>
+                <td></td>
+                <td id="subtotal"></td>
+            </tr>             
+            <tr>
+                <td>Tax (10%)</td>
+                <td></td>
+                <td></td>
+                <td id="tax"></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td id="total"></td>
+            </tr>
+               
+        </table>
+        
+        <!--promo code box-->
+        <div id="promoBox">
+            <label for="promoCodeInput"><b>Promo Code:</b></label>
+            <input type="text" name="promoCodeInput" id="promoCodeInput"/>
+        </div>
+    </body>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" >
+        
+        //when file doc is ready
+        $("document").ready( function() {
+            
+            //call ajax to load random option
+            $.ajax({
+                type: "GET",
+                url: "api/getRandomProduct.php",
+                dataType: "json",
+                data: {
+                },
+                success: function(data) {
+                    
+                    //set data in website
+                    $('#randProductName').html(data['productName']);
+                    $('#randProductPrice').html('$' + data['price']);
+                    $('#randProductQuantity').val(data['quantity']);
+                    $('#randProductTotal').html('$' + data['price']*data['quantity']);
+                    $('#discount').html('0%');
+                    $('#discountTotal').html('$0');
+                    $('#subtotal').html('$' + data['price']*data['quantity']);
+                    var taxed = (data['price']*data['quantity']) * .1;
+                    $('#tax').html('$' + taxed);
+                    var total = taxed + data['price']*data['quantity'];
+                    $('#total').html('$' + total);
+                },
+                error: function (error) {
+                    console.log(error);
+                },
+                complete: function(data, status) { //optional, used for debugging purposes
+                  //console.log(status);
+                }
+            });
+            
+            //called on change of promo code input
+            $('#promoCodeInput').on('input', function() {
+                
+                //call api with input on promo
+                $.ajax({
+                    type: "POST",
+                    url: "api/applyPromoCode.php",
+                    dataType: "json",
+                    data: {
+                        'promoCode' : $('#promoCodeInput').val(),
+                    },
+                    success: function(data) {
+                        if(data['discount'] === .5){
+                            $('#discount').html("50%");
+                        }
+                        
+                        var discountPercent = data['discount']; 
+                        var productTotal = '' + $('#randProductPrice').html();
+                        productTotal = productTotal.substring(1);
+                        var productTotalInt = parseInt(productTotal);
+                        console.log(productTotalInt);
+                        $('#discountTotal').html('$' + discountPercent * productTotalInt);
+                        
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                });
+            });
+        });
+        
+    </script>
+</html>
