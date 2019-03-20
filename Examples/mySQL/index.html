@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title> </title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(e) {
+            $.ajax({
+                type: "GET",
+                url: "/api.php",
+                dataType: "json",
+                data: {},
+                success: function(data) {
+                    console.log(data);
+                },
+                error: function(err) {
+                    console.log(arguments);
+                },
+                complete: function(data, status) {
+                    // Called whether success or error
+                    //console.log(status);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
