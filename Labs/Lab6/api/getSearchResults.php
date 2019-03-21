@@ -8,10 +8,16 @@ $conn = getDatabaseConnection();
 $namedParameters = array();
 $sql = 'SELECT * FROM om_product WHERE 1';
 
-//checks validity of input product text box
+//checks if input product text box is empty
 if (!empty($_GET['product'])) {
-    $sql .= ' AND productName LIKE :productName';
+    //add sql for both statements
+    $sql .= ' AND (productName LIKE :productName OR productDescription LIKE :productDescription)';
+    
+    //looks through product name
     $namedParameters[':productName'] = '%' . $_GET['product'] . '%';
+    
+    //searches productDescription
+    $namedParameters[':productDescription'] = '%' . $_GET['product'] . '%';
 }
 
 //checks if category is selected
