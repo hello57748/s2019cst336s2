@@ -2,7 +2,7 @@
 
 //connect to database
 include '../dbConnection.php';
-$conn = getDatabaseConnection('ottermart');
+$conn = getDatabaseConnection();
 
 $productId = $_GET['productId'];
 $sql = 'SELECT * 

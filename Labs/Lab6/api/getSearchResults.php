@@ -2,7 +2,7 @@
 
 //connect to database
 include '../dbConnection.php';
-$conn = getDatabaseConnection('ottermart');
+$conn = getDatabaseConnection();
 
 //get data from database based on search box text
 $namedParameters = array();
