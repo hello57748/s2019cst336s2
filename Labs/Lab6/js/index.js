@@ -25,9 +25,9 @@ $(document).ready(function() {
             dataType: "json",
             data: {
                 'product' : $('[name=product]').val(),
-                'category' : $('[name=category').val(),
+                'category' : $('[name=category]').val(),
                 'priceFrom' : $('[name=priceFrom]').val(),
-                'priceTo' : $('[name=priceTo').val(),
+                'priceTo' : $('[name=priceTo]').val(),
                 'orderBy' : $('[name=orderBy]:checked').val(),
             },
             success: function(data, status) {
