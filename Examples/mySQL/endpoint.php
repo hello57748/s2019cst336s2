@@ -37,9 +37,22 @@
     // Let the client know the format of the data being returned
     header("Content-Type: application/json");
 
-    // TODO: do stuff to get the $results which is an associative array
-    $results = array();
-    array_push($results, "something");
+    // // TODO: do stuff to get the $results which is an associative array
+    // $results = array();
+    // array_push($results, "something");
+    
+    // get data from MySQL
+    $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = " SELECT * FROM table_name WHERE id = :id ";
+    $stmt = $dbConn->prepare($sql);
+    $stmt->execute(array(':id' => '1'));
+    
+    // while ($row = $stmt->fetch()) {
+    //     echo $row['field1_name'] . ", " . $row['field2_name'];
+    // }
+    
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Sending back down as JSON
     echo json_encode($results);

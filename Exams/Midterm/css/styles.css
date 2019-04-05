@@ -1,0 +1,7 @@
+nav, h1 {
+    text-align: center;
+}
+
+#userInfo {
+    display: flex;
+}
