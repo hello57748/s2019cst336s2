@@ -19,7 +19,7 @@
       // Get the body json that was sent
       $rawJsonString = file_get_contents("php://input");
 
-      //var_dump($rawJsonString);
+      // var_dump($rawJsonString);
 
       // Make it a associative array (true, second param)
       $jsonData = json_decode($rawJsonString, true);
@@ -52,7 +52,7 @@
       $stmt = $dbConn->prepare($sql);
       $stmt->execute(array (":username" => $_POST['username']));
       
-      $record = $stmt->fetch();
+      $record = $stmt->fetch(PDO::FETCH_ASSOC);
       
       $isAuthenticated = password_verify($_POST["password"], $record["password"]);
       
