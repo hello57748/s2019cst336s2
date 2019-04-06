@@ -25,10 +25,15 @@
       $jsonData = json_decode($rawJsonString, true);
 
       // TODO: do stuff to get the $results which is an associative array
-      $host = "localhost";
-      $dbname = "ottermart";
-      $username = "hello57748";
-      $password = "";
+      // $host = "localhost";
+      // $dbname = "ottermart";
+      // $username = "hello57748";
+      // $password = "";
+      
+      $host = 'us-cdbr-iron-east-03.cleardb.net'; //cloud 9 acting as host
+      $username = 'b8282773fb41e0';
+      $password = 'a78ad875';
+      $dbname = 'heroku_d727c510ebe6dad';
   
       // Get Data from DB
       $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
