@@ -49,12 +49,9 @@
       
       $isAuthenticated = password_verify($_POST["password"], $record["password"]);
       
-      $toReturn = array("isAuthenticated" => $isAuthenticated);
-      
       if ($isAuthenticated) {
         $_SESSION["username"] = $record["username"];
         $_SESSION["isAdmin"] = $record["is_admin"];
-        $toReturn["isAdmin"] = $record["is_admin"]; 
       }
       
       // Allow any client to access
@@ -63,7 +60,7 @@
       header("Content-Type: application/json");
 
       // Sending back down as JSON
-      echo json_encode($toReturn);
+      echo json_encode($record);
 
       break;
     case 'PUT':
