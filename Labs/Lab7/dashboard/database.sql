@@ -5,7 +5,7 @@
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(128) NOT NULL,
+  `username` varchar(128) NOT NULL,
   `password` varchar(512) NOT NULL,
   `is_admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -18,4 +18,4 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` VALUES (1,'jahenderson@csumb.edu','$2y$11$xl8rmzbQXOOIcN8dhMlmEepwp8VUF7Aiid/yvpPg/HNmHQIS/JFvK',0);
+INSERT INTO `user` VALUES (1,'admin','s3cr3t',0);

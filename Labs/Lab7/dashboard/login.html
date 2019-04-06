@@ -12,11 +12,11 @@
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <!--<link href="css/font-awesome.min.css" rel="stylesheet">-->
+    <!--<link href="css/simple-line-icons.css" rel="stylesheet">-->
 
     <!-- Main styles for this application -->
-    <link href="css/style.min.css" rel="stylesheet">
+    <!--<link href="css/style.min.css" rel="stylesheet">-->
 
     <!-- Styles required by this views -->
     <style>
@@ -44,7 +44,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">@</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Email" name="email">
+                        <input type="text" class="form-control" placeholder="Username" name="username">
                     </div>
 
                     <div class="input-group mb-3">
@@ -75,15 +75,17 @@
                 url: "login.php",
                 dataType: "json",
                 data: {
-                    "email": $("input[name='email']").val(),
+                    "username": $("input[name='username']").val(),
                     "password": $("input[name='password']").val(),
                 },
                 success: function(data, status) {
-                    console.log(data);
+                    // console.log(data);
                     if (data.isAuthenticated) {
-                        window.location = "index.php"
+                        // console.log(data);
+                        if (data["isAdmin"] === "1") window.location = "../indexAdmin.php";
+                        else window.location = "../indexNonAdmin.php";
                     } else {
-                        $("#message").html("Bad email or password");
+                        $("#message").html("Bad username or password");
                         $("#message").removeClass("open-hidden");
                     }
                 },

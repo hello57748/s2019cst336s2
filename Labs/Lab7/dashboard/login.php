@@ -25,9 +25,9 @@
       $jsonData = json_decode($rawJsonString, true);
 
       // TODO: do stuff to get the $results which is an associative array
-      $host = "127.0.0.1";
-      $dbname = "dashboard";
-      $username = "jahenderson";
+      $host = "localhost";
+      $dbname = "ottermart";
+      $username = "hello57748";
       $password = "";
   
       // Get Data from DB
@@ -35,18 +35,21 @@
       $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 
       $sql = "SELECT * FROM user " .
-             "WHERE email = :email ";
+             "WHERE username = :username ";
       
       $stmt = $dbConn->prepare($sql);
-      $stmt->execute(array (":email" => $_POST['email']));
+      $stmt->execute(array (":username" => $_POST['username']));
       
       $record = $stmt->fetch();
       
       $isAuthenticated = password_verify($_POST["password"], $record["password"]);
-        
+      
+      $toReturn = array("isAuthenticated" => $isAuthenticated);
+      
       if ($isAuthenticated) {
-        $_SESSION["email"] = $record["email"];
+        $_SESSION["username"] = $record["username"];
         $_SESSION["isAdmin"] = $record["is_admin"];
+        $toReturn["isAdmin"] = $record["is_admin"]; 
       }
       
       // Allow any client to access
@@ -55,7 +58,7 @@
       header("Content-Type: application/json");
 
       // Sending back down as JSON
-      echo json_encode(array("isAuthenticated" => $isAuthenticated));
+      echo json_encode($toReturn);
 
       break;
     case 'PUT':
