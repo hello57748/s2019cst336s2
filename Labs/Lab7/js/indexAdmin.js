@@ -278,8 +278,10 @@ $(document).ready(function() {
                     'pId' : pId,
                 },
                 success: function(data, status) {
+                    console.log(data);
                 },
                 error: function (error) {
+                    console.log(data);
                 },
             });
             getSearchResults();
