@@ -19,7 +19,7 @@
       // Get the body json that was sent
       $rawJsonString = file_get_contents("php://input");
 
-      // var_dump($rawJsonString);
+      //var_dump($rawJsonString);
 
       // Make it a associative array (true, second param)
       $jsonData = json_decode($rawJsonString, true);
@@ -29,20 +29,19 @@
       // $dbname = "ottermart";
       // $username = "hello57748";
       // $password = "";
-      
+      $dbname = 'heroku_d727c510ebe6dad';
       $host = 'us-cdbr-iron-east-03.cleardb.net'; //cloud 9 acting as host
       $username = 'b8282773fb41e0';
       $password = 'a78ad875';
-      $dbname = 'heroku_d727c510ebe6dad';
+      if  (strpos($_SERVER['HTTP_HOST'], 'herokuapp') !== false) {
+        $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+        $host = $url["host"];
+        $dbname = substr($url["path"], 1);
+        $username = $url["user"];
+        $password = $url["pass"];
+      } 
   
       // Get Data from DB
-      if  (strpos($_SERVER['HTTP_HOST'], 'herokuapp') !== false) {
-          $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-          $host = $url["host"];
-          $dbname = substr($url["path"], 1);
-          $username = $url["user"];
-          $password = $url["pass"];
-      } 
       $dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
       $dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
 
@@ -52,13 +51,16 @@
       $stmt = $dbConn->prepare($sql);
       $stmt->execute(array (":username" => $_POST['username']));
       
-      $record = $stmt->fetch(PDO::FETCH_ASSOC);
+      $record = $stmt->fetch();
       
       $isAuthenticated = password_verify($_POST["password"], $record["password"]);
+      
+      $toReturn = array("isAuthenticated" => $isAuthenticated);
       
       if ($isAuthenticated) {
         $_SESSION["username"] = $record["username"];
         $_SESSION["isAdmin"] = $record["is_admin"];
+        $toReturn["isAdmin"] = $record["is_admin"]; 
       }
       
       // Allow any client to access
@@ -67,7 +69,7 @@
       header("Content-Type: application/json");
 
       // Sending back down as JSON
-      echo json_encode($record);
+      echo json_encode($toReturn);
 
       break;
     case 'PUT':
