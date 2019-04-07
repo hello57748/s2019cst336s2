@@ -56,6 +56,7 @@
       $isAuthenticated = password_verify($_POST["password"], $record["password"]);
       
       $toReturn = array("isAuthenticated" => $isAuthenticated);
+      // $toReturn['passwordCode'] = $record["password"];
       
       if ($isAuthenticated) {
         $_SESSION["username"] = $record["username"];
