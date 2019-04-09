@@ -17,6 +17,6 @@ VALUES (:pName, :pDescription, :pImageURL, :pPrice, :pCategory);';
 
 $stmt = $conn->prepare($sql);
 $stmt->execute($np);
-$records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 echo json_encode($records);
 ?>

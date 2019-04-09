@@ -58,7 +58,11 @@
             <button id="searchForm"> Search </button>
             <button id="addItemButton"> Add Item to Ottermart Inventory </button>
             <hr>
-            <div id='results'></div>
+            
+            <div>
+                <table id='results'>
+                </table>
+            </div>
             
             <!--modal to display purchase history info-->
             <div id="purchaseHistoryModal" class="modal" tabindex='-1' role='dialog'>
@@ -169,7 +173,7 @@
                 <div class='modal-dialog' role='document'>
                     <div class='modal-content'>
                         <div class='modal-header'>
-                            <h5 class='modal-title'>Edit Product Info</h5>
+                            <h5 class='modal-title'>Delete Product</h5>
                             <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
                                 <span aria-hidden='true'>&times;</span>
                             </button>

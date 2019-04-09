@@ -7,9 +7,9 @@ function getDatabaseConnection($dbname = 'heroku_d727c510ebe6dad') {
     $username = 'b8282773fb41e0';
     $password = 'a78ad875';
     
-//     $host = 'localhost'; //cloud 9 acting as host
-//     $username = 'hello57748';
-//     $password = '';
+    // $host = 'localhost'; //cloud 9 acting as host
+    // $username = 'hello57748';
+    // $password = '';
     
     if  (strpos($_SERVER['HTTP_HOST'], 'herokuapp') !== false) {
         $url = parse_url(getenv("CLEARDB_DATABASE_URL"));

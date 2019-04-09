@@ -18,6 +18,6 @@ $sql = 'UPDATE om_product
 
 $stmt = $conn->prepare($sql);
 $stmt->execute($np);
-$records = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 echo json_encode($records);
 ?>

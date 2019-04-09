@@ -17,12 +17,12 @@
       break;
     case 'POST':
       // Get the body json that was sent
-      $rawJsonString = file_get_contents("php://input");
+      // $rawJsonString = file_get_contents("php://input");
 
       //var_dump($rawJsonString);
 
       // Make it a associative array (true, second param)
-      $jsonData = json_decode($rawJsonString, true);
+      // $jsonData = json_decode($rawJsonString, true);
 
       // TODO: do stuff to get the $results which is an associative array
       // $host = "localhost";
@@ -56,7 +56,6 @@
       $isAuthenticated = password_verify($_POST["password"], $record["password"]);
       
       $toReturn = array("isAuthenticated" => $isAuthenticated);
-      // $toReturn['passwordCode'] = $record["password"];
       
       if ($isAuthenticated) {
         $_SESSION["username"] = $record["username"];
@@ -64,7 +63,7 @@
         $toReturn["isAdmin"] = $record["is_admin"]; 
       }
       
-      // Allow any client to access
+      // // Allow any client to access
       header("Access-Control-Allow-Origin: *");
       // Let the client know the format of the data being returned
       header("Content-Type: application/json");

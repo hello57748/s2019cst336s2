@@ -1,25 +1,7 @@
 // JavaScript File
 
 $(document).ready(function() {
-    
-    //wait on add item button to be clicked and display modal when it is
-    $('#addItemButton').on('click', function() {
-        $('#addProductName').val("");
-        $('#addProductImageURL').val("");
-        $('#addProductDescription').val("");
-        $('#addProductPrice').val("");
-        $('#addProductCategory').val("");
-        $('#addItemModal').modal("show");
-    });
-    $('#addConfirmButton').on('click', function() {
-        //call function that adds valid items to database
-        addItemToDB();
-    });
-    
-    $("#logoutButton").on("click", function() {
-        window.location = "dashboard/logout.php";
-    });
-    
+    //******************************************************************************************************************
     //call ajax
     $.ajax({
         type: "GET",
@@ -34,71 +16,20 @@ $(document).ready(function() {
             console.log(error);
         },
     });
-    
-    //on click of the search button
-    $('#searchForm').on('click', function() {
-        getSearchResults();
+    //******************************************************************************************************************
+    //wait on add item button to be clicked and display modal when it is
+    $('#addItemButton').on('click', function() {
+        $('#addProductName').val("");
+        $('#addProductImageURL').val("");
+        $('#addProductDescription').val("");
+        $('#addProductPrice').val("");
+        $('#addProductCategory').val("");
+        $('#addItemModal').modal("show");
     });
-    
-    //displaying purchase history modal
-    $(document).on('click', '.historyLink', function() {
-        $('#purchaseHistoryModal').modal("show");
-        $.ajax({
-            type: "GET",
-            url: "api/getPurchaseHistory.php",
-            dataType: "json",
-            data: {
-                'productId' : $(this).attr('id'),
-            },
-            success: function(data, status) {
-                if (data.length != 0) {
-                    $("#history").html("");
-                    $("#history").append(data[0]['productName'] + "<br />");
-                    $("#history").append("<img src='" + data[0]['productImage'] + "' width='200' /> <br />");
-                    data.forEach(function(key) {
-                        $('#history').append('Purchase Date: ' + key['purchaseDate'] + '<br/>');
-                        $('#history').append('Unit Price: ' + key['unitPrice'] + '<br/>');
-                        $('#history').append('Quantity : ' + key['quantity'] + '<br/>');
-                    });
-                }
-                else {
-                    $("#history").html('No purchase history for this item.');
-                }
-            },
-            error: function (error) {
-                console.log(error);
-            },
-        });
+    $('#addConfirmButton').on('click', function() {
+        //call function that adds valid items to database
+        addItemToDB();
     });
-    
-    //displaying product info modal
-    $(document).on('click', '.productInfoLink', function() {
-        $('#productInfoModal').modal("show");
-        $.ajax({
-            type: "GET",
-            url: "api/getProductInfo.php",
-            dataType: "json",
-            data: {
-                'productId' : $(this).attr('id'),
-            },
-            success: function(data, status) {
-                if (data.length != 0) {
-                    $("#productInfoMain").html("");
-                    $("#productInfoMain").append(data[0]['productName'] + "<br />");
-                    $("#productInfoMain").append("<img src='" + data[0]['productImage'] + "' width='200' /> <br />");
-                    $('#productInfoMain').append('Product Description: ' + data[0]['productDescription'] + '<br/>');
-                    $('#productInfoMain').append('Price: ' + data[0]['price'] + '<br/>');
-                }
-                else {
-                    $("#productInfoMain").html('No product info for this item.');
-                }
-            },
-            error: function (error) {
-                console.log(error);
-            },
-        });
-    });
-    
     function addItemToDB() {
         //get values from text input boxes
         var newProductName = $('#addProductName').val();
@@ -141,25 +72,96 @@ $(document).ready(function() {
             },
             success: function(data, status) {
                 // console.log(data);
+                getSearchResults();
             },
             error: function (error) {
-                // console.log(error);
+                console.log(error);
             },
         });
         
         
     }
-    
-    //product editing modal
-    //on click of the product edit button
-    $(document).on('click', '.editProductButton', function() {
-        $('#productEditModal').modal("show");
+    //******************************************************************************************************************
+    $("#logoutButton").on("click", function() {
+        window.location = "dashboard/logout.php";
+    });
+    //******************************************************************************************************************
+    //on click of the search button
+    $('#searchForm').on('click', function() {
+        getSearchResults();
+    });
+    //******************************************************************************************************************
+    //displaying purchase history modal
+    $(document).on('click', '.historyLink', function() {
+        $.ajax({
+            type: "GET",
+            url: "api/getPurchaseHistory.php",
+            dataType: "json",
+            data: {
+                'productId' : $(this).attr('id'),
+            },
+            success: function(data, status) {
+                if (data.length != 0) {
+                    $("#history").html("");
+                    $("#history").append(data[0]['productName'] + "<br />");
+                    $("#history").append("<img src='" + data[0]['productImage'] + "' width='200' /> <br />");
+                    data.forEach(function(key) {
+                        $('#history').append('Purchase Date: ' + key['purchaseDate'] + '<br/>');
+                        $('#history').append('Unit Price: ' + key['unitPrice'] + '<br/>');
+                        $('#history').append('Quantity : ' + key['quantity'] + '<br/>');
+                    });
+                }
+                else {
+                    $("#history").html('No purchase history for this item.');
+                }
+                $('#purchaseHistoryModal').modal("show");
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        });
+    });
+    //******************************************************************************************************************
+    //displaying product info modal
+    $(document).on('click', '.productInfoLink', function() {
         $.ajax({
             type: "GET",
             url: "api/getProductInfo.php",
             dataType: "json",
             data: {
-                'productId' : $(this).attr('id'),
+                'productId' : $(this).attr('data-id'),
+            },
+            success: function(data, status) {
+                if (data.length != 0) {
+                    $("#productInfoMain").html("");
+                    $("#productInfoMain").append(data[0]['productName'] + "<br />");
+                    $("#productInfoMain").append("<img src='" + data[0]['productImage'] + "' width='200' /> <br />");
+                    $('#productInfoMain').append('Product Description: ' + data[0]['productDescription'] + '<br/>');
+                    $('#productInfoMain').append('Price: ' + data[0]['price'] + '<br/>');
+                }
+                else {
+                    $("#productInfoMain").html('No product info for this item.');
+                }
+                $('#productInfoModal').modal("show");
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        });
+    });
+    //******************************************************************************************************************
+    //product editing modal
+    //on click of the product edit button
+    $(document).on('click', '.editProductButton', function() {
+        //on confirmation of edit
+        var pId = $(this).attr('data-id');
+        
+        $.ajax({
+            type: "GET",
+            url: "api/getProductInfo.php",
+            dataType: "json",
+            data: {
+                'productId' : pId,
             },
             success: function(data, status) {
                 $("#editProductName").val(data[0]['productName']);
@@ -167,18 +169,17 @@ $(document).ready(function() {
                 $("#editProductImageURL").val(data[0]['productImage']);
                 $("#editProductPrice").val(data[0]['price']);
                 $("#editProductCategory").val(data[0]['catId']);
+                $('#editConfirmButton').attr("data-id", pId)
+                $('#productEditModal').modal("show");
             },
             error: function (error) {
                 console.log(error);
-            },
+            }
         });
         
-        //on confirmation of edit
-        var pId = $(this).attr('id');
         $('#editConfirmButton').on('click', function() {
             //call function that adds valid items to database
-            editItemInDB(pId);
-            getSearchResults();
+            editItemInDB($(this).attr("data-id"));
         });
     });
     
@@ -207,14 +208,14 @@ $(document).ready(function() {
                 'pCategory' : newProductCategory,
             },
             success: function(data, status) {
-                console.log(data);
+                getSearchResults();
             },
             error: function (error) {
-                // console.log(error);
+                console.error(error.responseText);
             },
         });
     }
-    
+    //******************************************************************************************************************
     function getSearchResults() {
         $.ajax({
             type: "GET",
@@ -231,27 +232,31 @@ $(document).ready(function() {
                 $('#results').html('<h3> Products Found: </h3>');
                 data.forEach(function(key) {
                     //delete button
-                    $("#results").append("<button class='deleteProductButton' id='" + key['productId'] + "'>" + 'Delete Item' + "</button> ");
-                    $("#results").append("<a href='#' class='historyLink' id='" + key['productId'] + "'>History</a> ");
-                    // $('#results').append(key['productName'] + " " + key['productDescription'] + " $" + key['price'] + '<br>');
-                    $("#results").append("<a href='#' class='productInfoLink' id='" + key['productId'] + "'>" + '<b>' + key['productName'] + '<b>' + "</a> ");
-                    //edit button
-                    $("#results").append("<button class='editProductButton' id='" + key['productId'] + "'>" + 'Edit Item' + "</button> " + '<br>');
+                    var resultsString = "<tr><td><button class='deleteProductButton' data-id='" + key['productId'] + "'>" + 'Delete Item' + "</button></td>";
+                    //history button
+                    resultsString += "<td><button class='historyLink' data-id='" + key['productId'] + "'>History</button></td>";
+                    //product info button
+                    resultsString += "<td><a href='#' class='productInfoLink' data-id='" + key['productId'] + "'>" + '<b>' + key['productName'] + "</a></td>";
+                    //edit product button
+                    resultsString += "<td><button class='editProductButton' data-id='" + key['productId'] + "'>" + 'Edit Item' + "</button> " + '</td></tr>';
+                    $('#results').append(resultsString);
                 });
             },
             error: function (error) {
+                console.log(error);
             },
         });
     }
-    
+    //******************************************************************************************************************
     //delete an item from the database
     $(document).on('click', '.deleteProductButton', function() {
+        var pId = $(this).attr('data-id');
         $.ajax({
             type: "GET",
             url: "api/getProductInfo.php",
             dataType: "json",
             data: {
-                'productId' : $(this).attr('id'),
+                'productId' : pId,
             },
             success: function(data, status) {
                 $("#deleteProductName").val(data[0]['productName']);
@@ -259,15 +264,14 @@ $(document).ready(function() {
                 $("#deleteProductImageURL").val(data[0]['productImage']);
                 $("#deleteProductPrice").val(data[0]['price']);
                 $("#deleteProductCategory").val(data[0]['catId']);
+                $('#productDeleteModal').modal("show");
             },
             error: function (error) {
             },
         });
         
-        $('#productDeleteModal').modal("show");
         
         //on confirmation of delete
-        var pId = $(this).attr('id');
         $('#deleteConfirmButton').on('click', function() {
             //call function that deletes items from database
             $.ajax({
@@ -278,13 +282,13 @@ $(document).ready(function() {
                     'pId' : pId,
                 },
                 success: function(data, status) {
-                    console.log(data);
+                    getSearchResults();
                 },
                 error: function (error) {
                     console.log(data);
                 },
             });
-            getSearchResults();
         });
     });
+    //******************************************************************************************************************
 });
