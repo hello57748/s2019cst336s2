@@ -1,0 +1,16 @@
+table {
+    border: 10px solid yellow;
+}
+
+h1, #searchButton, #searchBar {
+    display: inline;
+}
+
+h3 {
+    margin-left: 50px;
+    display: inline;
+}
+
+.keywordResultButton {
+    margin-top: 5px;
+}

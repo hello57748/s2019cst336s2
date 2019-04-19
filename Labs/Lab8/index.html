@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Lab 8 Search</title>
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+
+    <body>
+        
+        <header>
+            <input id="searchBar" type="text" name="searchKeyword" value=""/>
+            <button id="searchButton" onClick='search()'>Search</button>
+            <h3><a href="favorites.html">View Favorites</a></h3>
+        </header>
+        
+        <main>
+            <table style="width:100%" id="allPhotos"></table>
+        </main>
+        
+        <error id='error'></error>
+        
+    </body>
+    
+    <!--js-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+</html>
