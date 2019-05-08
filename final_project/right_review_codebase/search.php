@@ -143,6 +143,9 @@
                         gridOptions.api.setRowData(rowData);
                         sizeToFit();
 
+                    },
+                    error: function(error) {
+                        console.log(error);
                     }
                 }); //ajax call
 
