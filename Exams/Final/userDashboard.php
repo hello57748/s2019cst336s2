@@ -39,6 +39,10 @@
             #addTimeSlotModal {
                 display: hidden;
             }
+            #rubricTable {
+                border: 1px solid black;
+                margin-top: 50px;
+            }
         </style>
     </head>
     
@@ -127,6 +131,101 @@
             
             <!--error text-->
             <div id="error"></div>
+            
+            <!--Rubric-->
+            <div>
+                <table id="rubricTable">
+                    <thead>
+                    <tr style="border: 1px solid black;">
+                    <th style="text-align:left;border: 1px solid black;">#</th>
+                    <th style="text-align:left;border: 1px solid black;">Task Description</th>
+                    <th style="text-align:left;border: 1px solid black;">Points</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">1</td>
+                    <td style="text-align:left;border: 1px solid black; color: green;">You provide a ERD diagram representing the data and its relationships. This may be included in Cloud9 as a picture or from a designer tool</td>
+                    <td style="text-align:left;border: 1px solid black;">10</td>
+                    </tr>
+                    <trstyle="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">2</td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">Tables in MySQL match the ERD and support the requirements of the application</td>
+                    <td style="text-align:left;border: 1px solid black;">20</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">3</td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">The list of available appointments is pulled from MySQL using the API endpoint and displayed using the specified page design</td>
+                    <td style="text-align:left;border: 1px solid black;">20</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">4</td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">Available times with dates in the past do not show up in the Dashboard list</td>
+                    <td style="text-align:left;border: 1px solid black;">5</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">5</td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">A user can add an available time slot to the MySQL using the API endpoint and displayed using the specified modal design</td>
+                    <td style="text-align:left;border: 1px solid black;">20</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">6</td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">A user can remove an available time slot from MySQL using the API endpoint</td>
+                    <td style="text-align:left;border: 1px solid black;">15</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">7</td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">The user confirms the removal using the specified modal design</td>
+                    <td style="text-align:left;border: 1px solid black;">10</td>
+                    </tr style="border: 1px solid black;">
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;"></td>
+                    <td style="text-align:left;border: 1px solid black;">TOTAL</td>
+                    <td style="text-align:left;border: 1px solid black;">100</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;"></td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">This rubric is properly included AND UPDATED (BONUS)</td>
+                    <td style="text-align:left;border: 1px solid black;">2</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">BD</td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">Login works with a User table and BCrypt</td>
+                    <td style="text-align:left;border: 1px solid black;">20</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">BD</td>
+                    <td style="text-align:left;border: 1px solid black;color: red;">Add Google Signin for app login</td>
+                    <td style="text-align:left;border: 1px solid black;">10</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">BD</td>
+                    <td style="text-align:left;border: 1px solid black;color: green;">The app is deployed to Heroku</td>
+                    <td style="text-align:left;border: 1px solid black;">15</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">BD</td>
+                    <td style="text-align:left;border: 1px solid black;color: red;">A banner file can be uploaded and displayed</td>
+                    <td style="text-align:left;border: 1px solid black;">20</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">BD</td>
+                    <td style="text-align:left;border: 1px solid black;color: red;">The user can add multiple available time slots as specified</td>
+                    <td style="text-align:left;border: 1px solid black;">10</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">BD</td>
+                    <td style="text-align:left;border: 1px solid black;color: red;">In a separate page, you show the correct list of available time slots to the user who navigates to the correct invitation URL</td>
+                    <td style="text-align:left;border: 1px solid black;">10</td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                    <td style="text-align:left;border: 1px solid black;">BD</td>
+                    <td style="text-align:left;border: 1px solid black;color: red;">You correctly implement booking of the appointement, including all side effects</td>
+                    <td style="text-align:left;border: 1px solid black;">30</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
             
         </main>
 
