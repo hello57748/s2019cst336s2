@@ -1,0 +1,141 @@
+<?php
+    
+    session_start();
+    
+    //check that a user is logged in
+    if (!isset($_SESSION['username'])) {
+        header("Location: login.html");
+    }
+?>
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Dashboard</title>
+        <!--for bootstrap modal-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        
+        <!--CSS-->
+        <style type="text/css">
+            #logoutButton {
+                margin-left: 90%;
+                height: 40px;
+                width: 80px;
+            }
+            #invitationBox {
+                margin-top: 40px;
+            }
+            #invitationlink {
+                width: 30%;
+            }
+            #timeslotTable {
+                margin-top: 25px;
+            }
+            #addTimeSlotModal {
+                display: hidden;
+            }
+        </style>
+    </head>
+    
+    <body>
+        
+        <main>
+            <!--logout button-->
+            <div id="logoutBox">
+                <button id="logoutButton">Logout</button>
+            </div>
+            
+            <!--Invitation Link-->
+            <div id="invitationBox">
+                Invitation Link    
+                <input id="invitationlink" type="text" readonly>
+                <button id="copyInvitationLinkButton">copy link</button>
+            </div>
+            
+            <!--table holding all time slots-->
+            <table id="timeslotTable" style="width:100%">
+            </table>
+            
+            <!-- Modal for adding timeslots -->
+            <div class="modal fade" id="addTimeSlotModal" role="dialog">
+                <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Add Time Slot</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!--date input-->
+                            <div>
+                                Date: 
+                                <input type="date" id="dateInput">
+                            </div>
+                            <!--start time input-->
+                            <div>
+                                Start Time:
+                                <input type="time" id="startTimeInput">
+                            </div>
+                            <!--end time input-->
+                            <div>
+                                End Time:
+                                <input type="time" id="endTimeInput">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button onclick="addItemToTimeSlots()" type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+            
+            <!-- Modal for deleting timeslots -->
+            <div class="modal fade" id="deleteTimeSlotModal" role="dialog">
+                <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Delete Time Slot</h4>
+                        </div>
+                        <div class="modal-body">
+                            <!--start time display-->
+                            <div id="startTimeDisplay"></div>
+                            <!--end time display-->
+                            <div id="endTimeDisplay"></div>
+                            <!--confirmation of delete message-->
+                            <div>Are you sure you want to remove the time slot? This cannot be undone.</div>
+                            <!--data-id for current time slot-->
+                            <div id="timeSlotDeleteInfo" data-id=""></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button id="confirmTimeSlotDeletionButton" type="button" class="btn btn-default" data-dismiss="modal">Yes, Remove It!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--error text-->
+            <div id="error"></div>
+            
+        </main>
+
+    </body>
+
+
+    <!--JAVASCRIPT-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/userDashboard.js"></script>
+</html>
